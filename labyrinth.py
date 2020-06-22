@@ -2,7 +2,7 @@ import random
 import matplotlib.pyplot as plt
 
 class Labyrinth:
-    def __init__(self, w, h):
+    def __init__(self, w, h, show_labyrinth = False):
         self.w = w
         self.h = h
         self.used = [[False] * w for _ in range(h)]
@@ -31,14 +31,14 @@ class Labyrinth:
             self.walls.remove(enter)
         
 
-        
-        for wall in self.walls:
-            plt.plot([wall[0], wall[2]], [wall[1], wall[3]])
-        plt.show()
+        if show_labyrinth:
+            for wall in self.walls:
+                plt.plot([wall[0], wall[2]], [wall[1], wall[3]])
+            plt.show()
 
 
     def on_board(self, pos):
-        return pos[1] >= 0 and pos[1] < w and pos[0] >= 0 and pos[0] < h
+        return pos[1] >= 0 and pos[1] < self.w and pos[0] >= 0 and pos[0] < self.h
 
 
     def get_wall(self, before, after):
@@ -69,5 +69,6 @@ class Labyrinth:
             self.generate(move)
 
 
-w, h = map(int, input().split())
-L = Labyrinth(w, h)
+if __name__ == "__main__":
+    w, h = map(int, input().split())
+    L = Labyrinth(w, h)
