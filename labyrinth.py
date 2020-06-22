@@ -45,9 +45,9 @@ class Labyrinth:
         if before > after:
             before, after = after, before
         if before[0] == after[0]:
-            return (after[1], before[0], after[1], before[0] + 1)
+            return (before[0], after[1], before[0] + 1, after[1])
         else:
-            return (before[1], after[0], before[1] + 1, after[0])
+            return (after[0], before[1], after[0], before[1] + 1)
     
 
     def generate(self, pos):
